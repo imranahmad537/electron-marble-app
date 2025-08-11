@@ -17,6 +17,9 @@ const Sidebar = () => {
         <Link to='setting'>
        <li className="bg-blue-200 text-blue-800 px-4 py-2 rounded-xl cursor-pointer">Setting</li>
        </Link>
+       <Link to='login'>
+       <li className="bg-blue-200 text-blue-800 px-4 py-2 rounded-xl cursor-pointer">Login</li>
+       </Link>
       </ul>
     </div>
   );
