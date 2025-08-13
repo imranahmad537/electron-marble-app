@@ -2,16 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import path,{ join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-
-
-// Start Express backend
-const expressApp = require(path.join(__dirname, '../../backend/server.js'));
-
-
-const backendServer = expressApp.listen(3000, () => {
-    console.log('Backend running on port 3000');
-});
-// console.log("This is backend path",expressApp);
+const server = require('../../backend/server');
 
 function createWindow() {
   // Create the browser window.
@@ -36,6 +27,12 @@ function createWindow() {
     return { action: 'deny' }
   })
 
+
+   // Start Express API
+  server.listen(3001, () => console.log('API running on port 3001'));
+
+
+
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
@@ -51,6 +48,7 @@ function createWindow() {
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
+
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
@@ -81,7 +79,7 @@ app.on('window-all-closed', () => {
 })
 
 app.on('before-quit', () => {
-    backendServer.close();
+    // server.close();
 });
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

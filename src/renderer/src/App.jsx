@@ -6,13 +6,14 @@ import Setting from './components/Setting'
 import Order from './components/Order'
 import Stock from './components/Stock'
 import Login from './components/Login'
-
+// import MyApp from './components/MyApp'
 function App() {
   // const ipcHandle = () => window.electron.ipcRenderer.send('ping')
 
   return (
     <>
        <Routes>
+        {/* <Route path='/' element={<MyApp/>}/> */}
         <Route path='/' element={<Login/>}/>
         <Route path="/dashboard" element={<DashboardLayout />}>
           {/* <Route path="dashboardlayout" element={<DashboardLayout />} /> */}
